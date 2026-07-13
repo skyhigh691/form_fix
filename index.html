@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enquiry Form Developer Notes</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    padding:40px;
+    color:#333;
+    line-height:1.7;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    background:#fff;
+    padding:40px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+h1{
+    text-align:center;
+    color:#2563eb;
+    margin-bottom:30px;
+}
+
+h2{
+    margin-top:35px;
+    margin-bottom:15px;
+    color:#1e40af;
+    border-left:5px solid #2563eb;
+    padding-left:10px;
+}
+
+p{
+    margin-bottom:15px;
+}
+
+ul{
+    margin-left:25px;
+    margin-bottom:20px;
+}
+
+li{
+    margin-bottom:8px;
+}
+
+.error{
+    background:#fee2e2;
+    border-left:5px solid #dc2626;
+    padding:20px;
+    margin:20px 0;
+    color:#991b1b;
+}
+
+.warning{
+    background:#fef3c7;
+    border-left:5px solid #d97706;
+    padding:20px;
+    margin:20px 0;
+}
+
+.code{
+    background:#111827;
+    color:#f8fafc;
+    padding:20px;
+    border-radius:8px;
+    overflow:auto;
+    margin-top:20px;
+}
+
+pre{
+    white-space:pre-wrap;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+table th{
+    background:#2563eb;
+    color:#fff;
+    padding:12px;
+}
+
+table td{
+    border:1px solid #ddd;
+    padding:12px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Enquiry Form Developer Notes</h1>
+
+<p>
+We're encountering an issue with the enquiry form.
+</p>
+
+<h2>Backend Expected Fields</h2>
+
+<ul>
+<li><strong>name</strong></li>
+<li><strong>email</strong></li>
+<li><strong>phone</strong></li>
+<li><strong>postcode</strong></li>
+<li><strong>driving_experience</strong></li>
+<li><strong>type_of_training</strong></li>
+<li><strong>licence</strong></li>
+<li><strong>lesson_preference_time</strong></li>
+<li><strong>preferred_start_date</strong></li>
+<li><strong>preferred_contact_method</strong></li>
+<li><strong>source</strong></li>
+<li><strong>additional_message</strong></li>
+</ul>
+
+<h2>Issue 1 - Invalid Regular Expression</h2>
+
+<p>
+When filling out <strong>your form</strong>, the browser throws the following error while submitting the form:
+</p>
+
+<div class="error">
+
+<pre>
+Pattern attribute value [0-9()#&+*-=.]+ is not a valid regular expression
+
+Invalid regular expression:
+/[0-9()#&+*-=.]+/v:
+Invalid character in character class
+</pre>
+
+</div>
+
+<p>
+However, when we fill out <strong>our form</strong> using the same backend API, the data is submitted successfully without any errors.
+</p>
+
+<p>
+Please compare your form with our working form and identify what is different.
+It appears there is an issue with one of the HTML validation attributes (most likely the <strong>pattern</strong> attribute on the <strong>Phone Number</strong> or <strong>Postcode</strong> field), rather than the backend.
+</p>
+
+<h2>Issue 2 - Chrome DevTools Warning</h2>
+
+<p>
+Additionally, Chrome DevTools is reporting another issue:
+</p>
+
+<div class="warning">
+
+<strong>A form field element should have an id or name attribute.</strong>
+
+</div>
+
+<p>
+Some form elements either have a missing or empty <strong>id</strong>/<strong>name</strong> attribute, which may prevent browser autofill and can affect form functionality.
+</p>
+
+<p>
+Please ensure that:
+</p>
+
+<ul>
+
+<li>Every form field has a valid <strong>name</strong> attribute.</li>
+
+<li>No <strong>name</strong> attribute is blank or missing.</li>
+
+<li>Each form field also has a unique <strong>id</strong> attribute (recommended for accessibility and browser autofill).</li>
+
+<li>The <strong>name</strong> attributes exactly match the backend field names listed above.</li>
+
+</ul>
+
+<h2>Working Form Structure</h2>
+
+<div class="code">
+
+<pre>
+&lt;form&gt;
+  &lt;div class="form-grid"&gt;
+
+    &lt;input type="text" name="name" placeholder="Full Name" /&gt;
+    &lt;input type="email" name="email" placeholder="Email Address" /&gt;
+
+    &lt;input type="text" name="phone" placeholder="Phone Number" /&gt;
+    &lt;input type="text" name="postcode" placeholder="Postcode" /&gt;
+
+    &lt;select name="driving_experience"&gt;
+      &lt;option value=""&gt;Driving Experience&lt;/option&gt;
+      &lt;option&gt;Beginner&lt;/option&gt;
+      &lt;option&gt;Some Experience&lt;/option&gt;
+      &lt;option&gt;Experienced&lt;/option&gt;
+    &lt;/select&gt;
+
+    &lt;select name="type_of_training"&gt;
+      &lt;option value=""&gt;Training Type&lt;/option&gt;
+      &lt;option&gt;Car Driving Lessons&lt;/option&gt;
+      &lt;option&gt;Automatic Car Lessons&lt;/option&gt;
+      &lt;option&gt;Manual Car Lessons&lt;/option&gt;
+      &lt;option&gt;Refresher Lessons&lt;/option&gt;
+      &lt;option&gt;Intensive Course&lt;/option&gt;
+    &lt;/select&gt;
+
+    &lt;select name="licence"&gt;
+      &lt;option value=""&gt;Learner Licence&lt;/option&gt;
+      &lt;option&gt;Yes&lt;/option&gt;
+      &lt;option&gt;No&lt;/option&gt;
+    &lt;/select&gt;
+
+    &lt;select name="lesson_preference_time"&gt;
+      &lt;option value=""&gt;Preferred Lesson Time&lt;/option&gt;
+      &lt;option&gt;Morning&lt;/option&gt;
+      &lt;option&gt;Afternoon&lt;/option&gt;
+      &lt;option&gt;Evening&lt;/option&gt;
+    &lt;/select&gt;
+
+    &lt;input type="date" name="preferred_start_date" /&gt;
+
+    &lt;select name="preferred_contact_method"&gt;
+      &lt;option value=""&gt;Preferred Contact Method&lt;/option&gt;
+      &lt;option&gt;Phone Call&lt;/option&gt;
+      &lt;option&gt;WhatsApp&lt;/option&gt;
+      &lt;option&gt;Email&lt;/option&gt;
+    &lt;/select&gt;
+
+    &lt;select name="source"&gt;
+      &lt;option value=""&gt;How did you hear about us?&lt;/option&gt;
+      &lt;option&gt;Google&lt;/option&gt;
+      &lt;option&gt;Facebook&lt;/option&gt;
+      &lt;option&gt;Instagram&lt;/option&gt;
+      &lt;option&gt;Referral&lt;/option&gt;
+      &lt;option&gt;Website&lt;/option&gt;
+      &lt;option&gt;Other&lt;/option&gt;
+    &lt;/select&gt;
+
+    &lt;textarea
+      name="additional_message"
+      rows="5"
+      placeholder="Additional Message"&gt;
+    &lt;/textarea&gt;
+
+    &lt;button type="submit"&gt;Submit Enquiry&lt;/button&gt;
+
+  &lt;/div&gt;
+&lt;/form&gt;
+</pre>
+
+</div>
+
+<h2>Expected Data Types</h2>
+
+<table>
+
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+</tr>
+
+<tr>
+<td>name</td>
+<td>String</td>
+</tr>
+
+<tr>
+<td>phone</td>
+<td>String</td>
+</tr>
+
+<tr>
+<td>email</td>
+<td>String</td>
+</tr>
+
+<tr>
+<td>postcode</td>
+<td>String</td>
+</tr>
+
+<tr>
+<td>driving_experience</td>
+<td>String</td>
+</tr>
+
+<tr>
+<td>type_of_training</td>
+<td>String</td>
+</tr>
+
+<tr>
+<td>licence</td>
+<td>String</td>
+</tr>
+
+<tr>
+<td>preferred_start_date</td>
+<td>Date</td>
+</tr>
+
+<tr>
+<td>lesson_preference_time</td>
+<td>String</td>
+</tr>
+
+<tr>
+<td>preferred_contact_method</td>
+<td>String</td>
+</tr>
+
+<tr>
+<td>source</td>
+<td>String</td>
+</tr>
+
+<tr>
+<td>additional_message</td>
+<td>String</td>
+</tr>
+
+</table>
+
+</div>
+
+</body>
+</html>
