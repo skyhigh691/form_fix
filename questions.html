@@ -110,6 +110,72 @@ body{
 
 }
 
+.mock-ui{
+    background:#2a2536;
+    border-radius:12px;
+    padding:24px;
+    color:#fff;
+    margin-bottom:25px;
+    max-width:500px;
+}
+.mock-ui h3{
+    font-size:18px;
+    font-weight:600;
+    margin-bottom:20px;
+    color:#fff;
+}
+.mock-ui .section-title{
+    font-size:15px;
+    font-weight:500;
+    margin-bottom:12px;
+}
+.mock-ui .upload-area{
+    border:1px dashed #423b52;
+    border-radius:12px;
+    padding:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:24px;
+}
+.mock-ui .upload-text-main{
+    font-size:15px;
+    margin-bottom:6px;
+    font-weight:500;
+}
+.mock-ui .upload-text-sub{
+    font-size:13px;
+    color:#9890a8;
+}
+.mock-ui .upload-actions{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+.mock-ui .btn-choose{
+    background:#16131c;
+    border:1px solid #332d40;
+    color:#fff;
+    padding:8px 16px;
+    border-radius:20px;
+    font-size:13px;
+    cursor:pointer;
+}
+.mock-ui .btn-upload{
+    background:#7e709e;
+    border:none;
+    color:#1e1a26;
+    padding:8px 16px;
+    border-radius:20px;
+    font-size:13px;
+    cursor:pointer;
+    font-weight:600;
+}
+.mock-ui .files-text{
+    font-size:14px;
+    color:#9890a8;
+}
+
 </style>
 
 </head>
@@ -134,6 +200,25 @@ during development.
 <div class="card">
 
 <h2>📁 1. Documents (Enquiry View)</h2>
+
+<div class="mock-ui">
+    <h3>Documents</h3>
+    
+    <div class="section-title">Upload</div>
+    <div class="upload-area">
+        <div class="upload-text">
+            <div class="upload-text-main">Drag &amp; drop or choose a file</div>
+            <div class="upload-text-sub">PDF, images, docs</div>
+        </div>
+        <div class="upload-actions">
+            <button class="btn-choose">Choose file</button>
+            <button class="btn-upload">Upload</button>
+        </div>
+    </div>
+    
+    <div class="section-title">Files</div>
+    <div class="files-text">No documents yet.</div>
+</div>
 
 <ul class="question-list">
 <li>Who will upload these documents (Admin, Instructor, or Student)?</li>
