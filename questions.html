@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Development Clarification Questions</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:#f4f6fb;
+    color:#333;
+    line-height:1.7;
+}
+
+.container{
+    max-width:1000px;
+    margin:50px auto;
+    padding:0 20px;
+}
+
+.header{
+    background:linear-gradient(135deg,#4f46e5,#6366f1);
+    color:#fff;
+    padding:45px;
+    border-radius:18px;
+    margin-bottom:35px;
+    box-shadow:0 12px 30px rgba(79,70,229,.18);
+}
+
+.header h1{
+    font-size:38px;
+    margin-bottom:15px;
+}
+
+.header p{
+    font-size:17px;
+    opacity:.95;
+}
+
+.card{
+    background:#fff;
+    border-radius:16px;
+    padding:35px;
+    margin-bottom:28px;
+    box-shadow:0 8px 25px rgba(0,0,0,.07);
+}
+
+.card h2{
+    color:#4f46e5;
+    font-size:26px;
+    margin-bottom:18px;
+}
+
+.question-list{
+    padding-left:22px;
+}
+
+.question-list li{
+    margin-bottom:14px;
+    font-size:16px;
+}
+
+.note{
+    background:#eef2ff;
+    border-left:5px solid #4f46e5;
+    padding:25px;
+    border-radius:12px;
+    margin-top:40px;
+}
+
+.note h3{
+    margin-bottom:10px;
+    color:#4f46e5;
+}
+
+.footer{
+    text-align:center;
+    margin:40px 0;
+    color:#777;
+    font-size:14px;
+}
+
+@media(max-width:768px){
+
+.header{
+    padding:30px;
+}
+
+.header h1{
+    font-size:28px;
+}
+
+.card{
+    padding:25px;
+}
+
+.card h2{
+    font-size:22px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+<h1>Development Clarification Questions</h1>
+
+<p>
+To ensure all remaining features are implemented according to your expected business logic,
+I have a few clarification questions below. This will help avoid any incorrect assumptions
+during development.
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>📁 1. Documents (Enquiry View)</h2>
+
+<ul class="question-list">
+<li>Who will upload these documents (Admin, Instructor, or Student)?</li>
+
+<li>What types of documents are expected to be uploaded?</li>
+
+<li>What is the purpose of these documents in the enquiry?</li>
+
+<li>Will the uploaded documents only be stored in the system, or do they also need to be sent somewhere (e.g., via email or another service)?</li>
+
+<li>Who should be able to view, download, or delete these documents after they have been uploaded?</li>
+</ul>
+
+</div>
+
+
+
+
+<div class="card">
+
+<h2>📧 2. Student Emails</h2>
+
+<ul class="question-list">
+
+<li>When the <strong>Review Request</strong> <strong>Send</strong> button is clicked, what exactly should be sent?</li>
+
+<li>Is it an email containing a review request?</li>
+
+<li>Should it include a review link (Google Reviews, Trustpilot, Facebook, etc.)? If yes, which link should be used?</li>
+
+</ul>
+
+</div>
+
+
+
+
+<div class="card">
+
+<h2>📝 3. Enquiry Details</h2>
+
+<ul class="question-list">
+
+<li>What is the purpose of the <strong>Duration</strong> field? Where will this value be used?</li>
+
+<li>Why do we need the <strong>Price</strong> field in the enquiry? Is it just for reference, or will it be used for payments, invoices, or reporting?</li>
+
+<li>There is also an <strong>Entry Type</strong> field in the enquiry. What does it represent, and where will this value come from?</li>
+
+</ul>
+
+</div>
+
+
+
+
+<div class="card">
+
+<h2>👨‍🏫 4. Instructor Details</h2>
+
+<p><strong>I noticed the following fields:</strong></p>
+
+<ul class="question-list">
+
+<li>Start Date</li>
+<li>Franchise Start Date</li>
+<li>Car Make</li>
+<li>Car Model</li>
+<li>Car Registration</li>
+<li>Entry Type</li>
+<li>Work Type</li>
+
+</ul>
+
+<br>
+
+<ul class="question-list">
+
+<li>Where will these details be collected from?</li>
+
+<li>Will the admin enter them manually when creating/updating an instructor, or will they come from another onboarding process?</li>
+
+<li>What is the purpose of the <strong>Entry Type</strong> and <strong>Work Type</strong> fields, and how should they be determined?</li>
+
+<li>What is the business purpose of these fields, and where will they be used in the system?</li>
+
+</ul>
+
+</div>
+
+
+
+
+<div class="card">
+
+<h2>💷 5. Franchise Fees</h2>
+
+<ul class="question-list">
+
+<li>Are these settings only for storing fee information, or should the system automatically generate payment records based on them?</li>
+
+<li>How should the <strong>Fee Type</strong> (Weekly, Monthly, etc.) work?</li>
+
+<li>How should the <strong>Due Rule</strong> and <strong>Custom Due Day</strong> affect the payment schedule?</li>
+
+<li>Should payment reminders or notifications be sent when payments become due or overdue?</li>
+
+<li>If the fee amount or schedule is updated later, should it affect only future payments or existing payment records as well?</li>
+
+</ul>
+
+</div>
+
+
+
+
+<div class="card">
+
+<h2>🎓 6. ADI Training</h2>
+
+<ul class="question-list">
+
+<li>When the instructor type is changed to <strong>ADI</strong>, the ADI Training section does not show the training fee fields like it does for <strong>PDI</strong>.</li>
+
+<li>Is this the expected behavior, or should the ADI section also include the same fields (Training Fee, Amount Paid, Outstanding, Notes, etc.) as the PDI section?</li>
+
+</ul>
+
+</div>
+
+
+
+
+<div class="note">
+
+<h3>Thank You</h3>
+
+<p>
+Once these questions are clarified, I will implement the functionality according to the expected workflow and business logic to ensure everything behaves exactly as intended.
+</p>
+
+</div>
+
+<div class="footer">
+Prepared for Development Clarification
+</div>
+
+</div>
+
+</body>
+</html>
